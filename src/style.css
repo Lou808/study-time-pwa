@@ -1,0 +1,206 @@
+:root {
+  --bg: #f2f4f7;
+  --card: #ffffff;
+  --text: #1a1f2b;
+  --muted: #5f6b7a;
+  --accent: #1e3a5f;
+  --accent-soft: #e3ebf5;
+  --border: #d5dbe3;
+  --error: #c62828;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f141b;
+    --card: #1a222d;
+    --text: #e8edf3;
+    --muted: #9aa7b6;
+    --accent: #8fb8e8;
+    --accent-soft: #24354a;
+    --border: #2f3b4a;
+    --error: #ff8a80;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  /* ダブルタップでの拡大を防ぐ */
+  touch-action: manipulation;
+}
+
+/* ノッチ・ホームバーにかぶらないようセーフエリア分の余白を取る */
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: calc(env(safe-area-inset-top) + 16px) calc(env(safe-area-inset-right) + 16px)
+    calc(env(safe-area-inset-bottom) + 24px) calc(env(safe-area-inset-left) + 16px);
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin: 8px 0 16px;
+}
+
+h2 {
+  font-size: 1rem;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
+}
+
+.time-inputs {
+  display: grid;
+  gap: 12px;
+}
+
+.stepper {
+  display: grid;
+  grid-template-columns: 56px 1fr 56px;
+  align-items: center;
+  gap: 8px;
+}
+
+.stepper label {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  font-size: 1.1rem;
+}
+
+/* iOS は16px未満の入力欄で自動ズームするので大きめにする */
+input[type="number"] {
+  width: 4.5em;
+  font-size: 1.75rem;
+  text-align: center;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.step {
+  height: 56px;
+  border: none;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.step:active,
+.secondary:active {
+  opacity: 0.6;
+}
+
+.error {
+  color: var(--error);
+  margin: 12px 0 0;
+  font-size: 0.95rem;
+}
+
+.result .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.result .label {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.result .value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.note {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 12px 0 0;
+  text-align: right;
+}
+
+.settings summary {
+  font-weight: 600;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ratio-inputs {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 12px;
+  margin: 12px 0 16px;
+}
+
+.ratio-inputs label {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.colon {
+  font-size: 1.75rem;
+  padding-bottom: 10px;
+}
+
+.secondary {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text);
+}
